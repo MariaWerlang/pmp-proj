@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <appender name="GELF" class="de.siegmar.logbackgelf.GelfUdpAppender">
+        <graylogHost>${GRAYLOG_HOST}</graylogHost>   <!-- IP do Graylog -->
+        <graylogPort>12201</graylogPort>       <!-- Porta do GELF UDP -->
+        <facility>spring-boot-app</facility>
+        <includePattern>.*</includePattern>    <!-- Inclui MDC, exceptions, etc -->
+    </appender>
+
+    <!-- Para continuar vendo logs no console -->
+    <appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Envia logs para ambos -->
+    <root level="INFO">
+        <appender-ref ref="Console"/>
+        <appender-ref ref="GELF"/>
+    </root>
+
+</configuration>
