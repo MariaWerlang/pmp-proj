@@ -3,7 +3,7 @@ name: pmp
 on:
   push:
     branches:
-      - modulo-1
+      - pmp
 
 jobs:
   deploy:
